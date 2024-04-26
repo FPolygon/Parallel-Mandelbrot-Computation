@@ -1,0 +1,12 @@
+#!/bin/bash
+#PBS -N mandelbrot-4              # Job name
+#PBS -q edu_shared            # Queue name
+#PBS -l nodes=4:ppn=1         # Request 4 nodes and 1 processor per node
+#PBS -l walltime=00:01:00     # Maximum walltime for the job
+#PBS -o mandelbrot-4.otxt         # Output file name
+#PBS -e mandelbrot-4.etxt         # Error file name
+#PBS -V                       # Export all environment variables to the job
+
+cd $PBS_O_WORKDIR             # Change to the job submission directory
+module load OpenMPI           # Load the OpenMPI module
+mpirun -np 4 ./mandelbrot       # Execute the MPI program with 4 processes
